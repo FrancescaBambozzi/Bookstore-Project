@@ -12,7 +12,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <title>NYSL</title>
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700i|Fira+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
 </head>
 
 <body>
@@ -23,34 +25,40 @@
             <div class="heading">
                 <img class="logo" src="img/icons8-book-100.png" alt="site-logo">
                 <h1>BookStore</h1>
+                <p class="quote">"A book is a dream you hold in your hands"</p>
             </div>
-            <p class="quote">"A book is a dream you hold in your hands"</p>
 
             <!--- Search Bar -->
             <div class="jumbotron">
-                <input type="text" v-model="search" placeholder="search title" />
+                <input class="search_input" type="text" v-model="search" placeholder="Search for a book.." />
             </div>
 
             <!--- Books container -->
             <div class="books_container">
                 <div class="row" v-for="book in filteredBooks">
-                    <a v-bind:href="book.title" target="_blank">
-                        <div class="each_book">
-                            <!--- Flip card BookCover -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <img class="book_cover" v-bind:src="book.cover" alt="book-cover" />
-                                    </div>
-                                    <div class="flip-card-back" >
-                                        <h1>{{book.title}}</h1>
-                                        <p>{{ book.description}}</p>
-                                    </div>
+
+                    <div class="each_book">
+                        <!--- Flip card BookCover -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img class="book_cover" v-bind:src="book.cover" alt="book-cover" />
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>{{book.title}}</h3>
+                                    <p>{{ book.description}}</p>
+                                    <button class="info_button" type="button" v-on:click="isHidden = false">
+                                        <a v-bind:href="book.detail" data-fancybox="images">More Info!</a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
                 </div>
+            </div>
+
+            <div v-if="!isHidden" id="detail" class="imglist" style="max-width: 1000px;" v-for="book in filteredBooks">
             </div>
 
         </div>
@@ -59,6 +67,7 @@
 
     <!--- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
     <!--Bootstrap-->
     <script src="js/bootstrap.min.js"></script>
     <!--- Vue -->
