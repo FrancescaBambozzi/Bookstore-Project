@@ -25,23 +25,34 @@
                 <h1>BookStore</h1>
             </div>
             <p class="quote">"A book is a dream you hold in your hands"</p>
-            
+
             <!--- Search Bar -->
             <div class="jumbotron">
-                <input type="text" v-model="search" placeholder="search title"/>
+                <input type="text" v-model="search" placeholder="search title" />
             </div>
-            
+
             <!--- Books container -->
             <div class="books_container">
                 <div class="row" v-for="book in filteredBooks">
                     <a v-bind:href="book.title" target="_blank">
-                        <div class="each_book" style="background-color:lavender;">
-                            <img class="book_cover" v-bind:src="book.cover" alt="book-cover" /> 
-                            {{book.title}}
+                        <div class="each_book">
+                            <!--- Flip card BookCover -->
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <img class="book_cover" v-bind:src="book.cover" alt="book-cover" />
+                                    </div>
+                                    <div class="flip-card-back" >
+                                        <h1>{{book.title}}</h1>
+                                        <p>{{ book.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 </div>
             </div>
+
         </div>
 
     </div>
