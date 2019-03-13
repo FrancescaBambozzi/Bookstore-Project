@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Mobile-First approach-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>NYSL</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div id="app" class="container">
+
+        <div class="container-fluid">
+            <div class="heading">
+                <img class="logo" src="img/icons8-book-100.png" alt="site-logo">
+                <h1>BookStore</h1>
+            </div>
+            <p class="quote">"A book is a dream you hold in your hands"</p>
+            
+            <!--- Search Bar -->
+            <div class="jumbotron">
+                <input type="text" v-model="search" placeholder="search title"/>
+            </div>
+            
+            <!--- Books container -->
+            <div class="books_container">
+                <div class="row" v-for="book in filteredBooks">
+                    <a v-bind:href="book.title" target="_blank">
+                        <div class="each_book" style="background-color:lavender;">
+                            <img class="book_cover" v-bind:src="book.cover" alt="book-cover" /> 
+                            {{book.title}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <script src="js/bootstrap.min.js"></script>
+    <!--- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js"></script>
+</body>
+
+</html>
